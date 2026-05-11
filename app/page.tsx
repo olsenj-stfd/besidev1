@@ -1,65 +1,141 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  listThemes,
+  listApprovedStories,
+  listConditions,
+} from "@/lib/data";
+import { getCurrentUser } from "@/lib/session";
+import { ConditionBadge } from "@/components/condition-badge";
+import { StoryCard } from "@/components/story-card";
+import { PulseNudge } from "@/components/pulse-nudge";
+import { BookOpen } from "lucide-react";
 
-export default function Home() {
+export default async function HomePage() {
+  const [themes, conditions, stories, user] = await Promise.all([
+    listThemes(),
+    listConditions(),
+    listApprovedStories(),
+    getCurrentUser(),
+  ]);
+
+  const recent = stories.slice(0, 4);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="space-y-12">
+      <section className="pt-6 pb-2 rise">
+        <p className="text-sm uppercase tracking-[0.18em] text-clay-deep mb-4">
+          beside
+        </p>
+        <h1 className="font-display text-4xl sm:text-5xl text-ink leading-[1.05] tracking-tight">
+          For the people loving someone through it
+          <span className="text-clay">.</span>
+        </h1>
+        <p className="mt-5 text-lg text-ink-soft leading-relaxed max-w-prose">
+          Beside is a quiet place for the family side of addiction, mental
+          illness, eating disorders, and grief. Read stories grouped by what
+          you&rsquo;re carrying. Share when you&rsquo;re ready. Find
+          professionals who specialize in supporting <em>you</em>, not the
+          person diagnosed.
+        </p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          {user ? (
+            <Link
+              href="/browse"
+              className="inline-flex items-center rounded-full bg-clay text-cream px-5 py-2.5 font-medium hover:bg-clay-deep transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Read stories
+            </Link>
+          ) : (
+            <Link
+              href="/welcome"
+              className="inline-flex items-center rounded-full bg-clay text-cream px-5 py-2.5 font-medium hover:bg-clay-deep transition-colors"
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+              Begin quietly
+            </Link>
+          )}
+          <Link
+            href="/find-help"
+            className="inline-flex items-center rounded-full border border-sand bg-white/60 text-ink-soft px-5 py-2.5 font-medium hover:border-clay/40 hover:text-ink transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            Find help
+          </Link>
+        </div>
+        <p className="mt-5 text-xs text-ink-muted max-w-prose leading-relaxed">
+          Beside is for connection, not treatment. We don&rsquo;t use AI to
+          talk back. We use it to help you find people who get it.
+        </p>
+      </section>
+
+      <section className="rounded-2xl border-l-4 border-clay bg-cream-deep px-5 py-5 sm:py-6">
+        <p className="font-display text-xl sm:text-2xl text-ink leading-snug italic">
+          &ldquo;With group therapy alone there would be 6 days, 22.5 hours
+          each week that I&rsquo;d feel more or less alone.&rdquo;
+        </p>
+        <p className="mt-3 text-xs text-ink-muted leading-relaxed">
+          Adult child of an alcoholic, from{" "}
+          <Link href="/evidence" className="text-clay-deep hover:underline">
+            Gustafson et al. 2012
+          </Link>{" "}
+          &mdash; the RCT that pioneered the digital intervention Beside is
+          built on.
+        </p>
+        <Link
+          href="/evidence"
+          className="mt-3 inline-flex items-center gap-1 text-xs text-clay-deep hover:text-clay underline-offset-2 hover:underline"
+        >
+          <BookOpen className="w-3 h-3" aria-hidden />
+          See the evidence
+        </Link>
+      </section>
+
+      <section>
+        <h2 className="font-display text-2xl text-ink mb-2">
+          Built for the second patient.
+        </h2>
+        <p className="text-sm text-ink-soft mb-4 max-w-prose">
+          Wife of an alcoholic. Parent of a child in eating-disorder recovery.
+          Daughter of a mom with dementia. Brother of someone with bipolar.
+          The conditions are different. The carrying is the same.
+        </p>
+        <div className="grid grid-cols-2 gap-2">
+          {conditions.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/browse?condition=${c.slug}`}
+              className="rounded-xl border border-sand bg-white/60 px-3 py-2.5 hover:border-clay/30 hover:bg-white transition-colors"
+            >
+              <ConditionBadge condition={c} />
+              <p className="mt-1 text-xs text-ink-muted leading-snug">
+                {c.description.replace(/&rsquo;/g, "’")}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <PulseNudge />
+
+      <section>
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="font-display text-2xl text-ink">Read someone</h2>
+          <Link
+            href="/browse"
+            className="text-sm text-clay-deep hover:text-clay"
+          >
+            more →
+          </Link>
+        </div>
+        <div className="space-y-3">
+          {recent.map((story) => (
+            <StoryCard
+              key={story.id}
+              story={story}
+              themes={themes}
+              conditions={conditions}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
+      </section>
     </div>
   );
 }

@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Beside
 
-## Getting Started
+A quiet place for the people who love someone touched by addiction.
 
-First, run the development server:
+Anonymous stories, grouped by theme. No comments — only reactions ("me too", "thinking of you", "thank you for sharing"). Every submission is reviewed by a human before going live. No AI talks back. The eventual matching layer (v2) only ever introduces you to another person.
+
+## Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind v4
+- Local JSON store (file at `./.data/store.json`, auto-seeded)
+- Cookie-based pseudonymous sessions
+- PWA-ready (manifest + theme color)
+
+## Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The data store is created automatically on first request, with seed themes and stories already populated. To reset, delete `./.data/store.json` and refresh.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Demo flow
 
-## Learn More
+1. `/` — Landing.
+2. `/welcome` — Pick a pseudonym, pick the themes you identify with.
+3. `/browse` — Theme grid + recent stories.
+4. `/themes/[slug]` — All approved stories under a theme.
+5. `/stories/[id]` — A single story with reactions.
+6. `/share` — Submit a story (goes to moderation queue).
+7. `/moderate` — Password-gated moderator view (default key: `beside-mod`).
 
-To learn more about Next.js, take a look at the following resources:
+To override the moderator password, set `MOD_PASSWORD=...` in a `.env.local`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## AI features (optional)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Three AI features are wired in via the Anthropic SDK ([`lib/ai.ts`](lib/ai.ts)) using `claude-opus-4-7` with adaptive thinking and structured outputs. **All three no-op gracefully if `ANTHROPIC_API_KEY` is not set** — the app still runs fully offline for the demo.
 
-## Deploy on Vercel
+1. **Theme binning** — In the share form, "suggest themes" reads the draft and proposes 1–4 themes with a one-line rationale. Author confirms.
+2. **Moderator triage** — Every submission gets an AI triage note (risk level, flags, summary, suggested action) shown only inside `/moderate`. The human always decides.
+3. **Resonance matching** — When a story is approved, Claude picks up to 3 already-published stories whose emotional shape rhymes most closely with it. Stored on the story record so reads stay cheap.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+What AI explicitly does NOT do here, by design:
+- Talk back to authors as a chatbot
+- Reply to stories
+- Make moderation decisions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Copy `.env.local.example` to `.env.local` and add your `ANTHROPIC_API_KEY` to enable.
+
+## What's not in this prototype
+
+- Real auth or accounts — pseudonyms live in a session cookie only.
+- AI companion (and we don't intend to build one).
+- Meeting-finder (Al-Anon / Nar-Anon / AA).
+- Push notifications.
+- A real database (the JSON store is intentionally swappable — see [`lib/data.ts`](lib/data.ts)).
+
+## Why these choices
+
+**Reactions, not comments.** Comments invite advice, debate, and re-traumatization. Reactions invite holding.
+
+**Pseudonyms, not accounts.** Email addresses turn a hard story into a long-term liability. A cookie-bound pseudonym is enough to maintain identity inside the app while leaving no real-world trail.
+
+**Human-in-the-loop moderation.** Every story is read before it's posted. Not to gatekeep — to keep the place soft for the next person.
+
+**Crisis resources are persistent, not buried.** A footer with 988 and SAMHSA is on every page.
