@@ -56,10 +56,7 @@ export function StoryCard({
             <span aria-hidden>·</span>
             <span className="flex items-center gap-1.5 flex-wrap">
               {storyThemes.slice(0, 2).map((t) => (
-                <span key={t.slug} className="inline-flex items-center gap-0.5">
-                  <span aria-hidden>{t.emoji}</span>
-                  <span>{t.short}</span>
-                </span>
+                <span key={t.slug}>{t.short}</span>
               ))}
             </span>
           </>

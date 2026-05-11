@@ -63,13 +63,12 @@ export default async function BrowsePage({
               <Link
                 key={c.slug}
                 href={`/browse?condition=${c.slug}`}
-                className={`rounded-full border px-3 py-1 text-xs inline-flex items-center gap-1 ${
+                className={`rounded-full border px-3 py-1 text-xs inline-flex items-center ${
                   active
                     ? "bg-clay text-cream border-clay"
                     : "bg-white border-sand text-ink-soft hover:border-clay/30"
                 }`}
               >
-                <span aria-hidden>{c.emoji}</span>
                 {c.short}
               </Link>
             );

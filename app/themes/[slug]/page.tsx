@@ -32,14 +32,9 @@ export default async function ThemePage({ params }: { params: Params }) {
   return (
     <div className="space-y-8">
       <section className={cn("rise rounded-3xl border p-6", t.bg, t.border)}>
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-3xl" aria-hidden>
-            {theme.emoji}
-          </span>
-          <p className="text-xs uppercase tracking-[0.18em] text-ink-muted">
-            theme
-          </p>
-        </div>
+        <p className="text-xs uppercase tracking-[0.18em] text-ink-muted mb-3">
+          theme
+        </p>
         <h1 className={cn("font-display text-3xl leading-tight", t.text)}>
           {theme.label}
         </h1>

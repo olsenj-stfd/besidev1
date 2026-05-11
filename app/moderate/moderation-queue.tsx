@@ -153,14 +153,13 @@ export function ModerationQueue({
                     <span
                       key={t.slug}
                       className={cn(
-                        "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px]",
+                        "inline-flex items-center rounded-full border px-2 py-0.5 text-[11px]",
                         tc.bg,
                         tc.border,
                         tc.text
                       )}
                     >
-                      <span aria-hidden>{t.emoji}</span>
-                      <span>{t.short}</span>
+                      {t.short}
                     </span>
                   );
                 })}

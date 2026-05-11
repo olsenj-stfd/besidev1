@@ -54,12 +54,7 @@ export function ConditionPicker({
               )}
               aria-pressed={on}
             >
-              <div className="flex items-center gap-2">
-                <span className="text-base" aria-hidden>
-                  {c.emoji}
-                </span>
-                <span className="font-medium text-sm">{c.short}</span>
-              </div>
+              <span className="font-medium text-sm">{c.short}</span>
               <p className="text-xs text-ink-muted mt-1 leading-snug">
                 {c.description.replace(/&rsquo;/g, "’")}
               </p>

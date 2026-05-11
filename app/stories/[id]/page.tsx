@@ -73,14 +73,13 @@ export default async function StoryPage({ params }: { params: Params }) {
                 key={t.slug}
                 href={`/themes/${t.slug}`}
                 className={cn(
-                  "inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs",
+                  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs",
                   tc.bg,
                   tc.border,
                   tc.text
                 )}
               >
-                <span aria-hidden>{t.emoji}</span>
-                <span>{t.short}</span>
+                {t.short}
               </Link>
             );
           })}

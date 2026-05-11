@@ -15,14 +15,11 @@ export function ThemeCard({ theme, count }: { theme: Theme; count?: number }) {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-2xl" aria-hidden>
-              {theme.emoji}
-            </span>
-            <h3 className={cn("font-display text-lg leading-tight", t.text)}>
-              {theme.label}
-            </h3>
-          </div>
+          <h3
+            className={cn("font-display text-lg leading-tight mb-2", t.text)}
+          >
+            {theme.label}
+          </h3>
           <p className="text-sm text-ink-soft mt-2 leading-relaxed">
             {theme.description}
           </p>

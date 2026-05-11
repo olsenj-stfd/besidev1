@@ -58,12 +58,7 @@ export function ThemePicker({
               )}
               aria-pressed={on}
             >
-              <div className="flex items-center gap-2">
-                <span className="text-base" aria-hidden>
-                  {theme.emoji}
-                </span>
-                <span className="font-medium text-sm">{theme.short}</span>
-              </div>
+              <span className="font-medium text-sm">{theme.short}</span>
               <p className="text-xs text-ink-muted mt-1 line-clamp-2">
                 {theme.label}
               </p>

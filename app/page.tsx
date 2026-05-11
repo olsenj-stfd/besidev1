@@ -8,7 +8,7 @@ import { getCurrentUser } from "@/lib/session";
 import { ConditionBadge } from "@/components/condition-badge";
 import { StoryCard } from "@/components/story-card";
 import { PulseNudge } from "@/components/pulse-nudge";
-import { BookOpen } from "lucide-react";
+import { BesideKeycards } from "@/components/beside-keycards";
 
 export default async function HomePage() {
   const [themes, conditions, stories, user] = await Promise.all([
@@ -69,27 +69,7 @@ export default async function HomePage() {
         </p>
       </section>
 
-      <section className="rounded-2xl border-l-4 border-clay bg-cream-deep px-5 py-5 sm:py-6">
-        <p className="font-display text-xl sm:text-2xl text-ink leading-snug italic">
-          &ldquo;With group therapy alone there would be 6 days, 22.5 hours
-          each week that I&rsquo;d feel more or less alone.&rdquo;
-        </p>
-        <p className="mt-3 text-xs text-ink-muted leading-relaxed">
-          Adult child of an alcoholic, from{" "}
-          <Link href="/evidence" className="text-clay-deep hover:underline">
-            Gustafson et al. 2012
-          </Link>{" "}
-          &mdash; the RCT that pioneered the digital intervention Beside is
-          built on.
-        </p>
-        <Link
-          href="/evidence"
-          className="mt-3 inline-flex items-center gap-1 text-xs text-clay-deep hover:text-clay underline-offset-2 hover:underline"
-        >
-          <BookOpen className="w-3 h-3" aria-hidden />
-          See the evidence
-        </Link>
-      </section>
+      <BesideKeycards user={user} />
 
       <section>
         <h2 className="font-display text-2xl text-ink mb-2">

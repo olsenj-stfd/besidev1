@@ -7,7 +7,6 @@ export const SEED_CONDITIONS: Condition[] = [
     short: "Addiction",
     description:
       "Loving someone using or in recovery from alcohol, drugs, or other compulsive use.",
-    emoji: "🪵",
     tint: "clay",
   },
   {
@@ -16,7 +15,6 @@ export const SEED_CONDITIONS: Condition[] = [
     short: "Mental health",
     description:
       "Depression, anxiety, bipolar, schizophrenia, PTSD, OCD — the full spectrum, and the people loving someone through it.",
-    emoji: "🌱",
     tint: "sage",
   },
   {
@@ -25,7 +23,6 @@ export const SEED_CONDITIONS: Condition[] = [
     short: "Eating disorders",
     description:
       "Anorexia, bulimia, binge eating, ARFID. The dinner table, the bathroom door, the relapse you can&rsquo;t see.",
-    emoji: "🪞",
     tint: "rose",
   },
   {
@@ -34,7 +31,6 @@ export const SEED_CONDITIONS: Condition[] = [
     short: "Grief & loss",
     description:
       "Caregiving through chronic illness or dementia, anticipatory grief, and grief after a loss.",
-    emoji: "🕯️",
     tint: "amber",
   },
 ];
@@ -46,7 +42,6 @@ export const SEED_THEMES: Theme[] = [
     short: "Parent of",
     description:
       "For mothers, fathers, and caregivers walking alongside a child living with this.",
-    emoji: "🌿",
     tint: "sage",
   },
   {
@@ -55,7 +50,6 @@ export const SEED_THEMES: Theme[] = [
     short: "Child of",
     description:
       "For people who grew up with this in the home — at any age, still figuring out what it shaped.",
-    emoji: "🪵",
     tint: "clay",
   },
   {
@@ -64,7 +58,6 @@ export const SEED_THEMES: Theme[] = [
     short: "Partner of",
     description:
       "For people loving someone through this — actively, in recovery, or somewhere in between.",
-    emoji: "🪞",
     tint: "rose",
   },
   {
@@ -73,7 +66,6 @@ export const SEED_THEMES: Theme[] = [
     short: "Sibling",
     description:
       "For brothers and sisters carrying the particular weight of watching a sibling struggle.",
-    emoji: "🧵",
     tint: "amber",
   },
   {
@@ -82,7 +74,6 @@ export const SEED_THEMES: Theme[] = [
     short: "Living with it",
     description:
       "For people in their own recovery or treatment who also carry the family side of the story.",
-    emoji: "🌅",
     tint: "sage",
   },
   {
@@ -91,7 +82,6 @@ export const SEED_THEMES: Theme[] = [
     short: "Grieving",
     description:
       "For those carrying loss — recent, distant, or anticipatory.",
-    emoji: "🕯️",
     tint: "sand",
   },
   {
@@ -99,7 +89,6 @@ export const SEED_THEMES: Theme[] = [
     label: "First year of all this",
     short: "First year",
     description: "Newer to this. Still learning the shape of it.",
-    emoji: "🌱",
     tint: "sage",
   },
   {
@@ -107,7 +96,6 @@ export const SEED_THEMES: Theme[] = [
     label: "Years into it",
     short: "Long haul",
     description: "Years deep. Some days steady, some days not.",
-    emoji: "🪨",
     tint: "clay",
   },
 ];

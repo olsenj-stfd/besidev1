@@ -21,7 +21,6 @@ export type Condition = {
   label: string;
   short: string;
   description: string;
-  emoji: string;
   tint: Tint;
 };
 
@@ -30,7 +29,6 @@ export type Theme = {
   label: string;
   short: string;
   description: string;
-  emoji: string;
   tint: Tint;
 };
 
