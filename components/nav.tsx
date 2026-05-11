@@ -8,10 +8,11 @@ export async function Nav() {
       <div className="max-w-[680px] mx-auto px-5 h-14 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display text-xl tracking-tight text-ink hover:text-clay-deep transition-colors"
+          className="font-display text-2xl tracking-tight text-ink hover:text-clay-deep transition-colors leading-none"
           aria-label="Beside, home"
         >
-          beside<span className="text-clay">.</span>
+          be<span className="italic">side</span>
+          <span className="text-clay">.</span>
         </Link>
         <nav className="flex items-center gap-4 sm:gap-5 text-sm">
           <Link

@@ -1,28 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { Cormorant_Garamond, Courier_Prime } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { CrisisFooter } from "@/components/crisis-footer";
 import { SafetyCheckin } from "@/components/safety-checkin";
 import { getCheckin } from "@/lib/checkin";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const courier = Courier_Prime({
+  variable: "--font-courier",
   subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
-  axes: ["SOFT", "WONK", "opsz"],
 });
 
 export const metadata: Metadata = {
   title: "Beside — you're not alone",
   description:
-    "A quiet place for families touched by addiction to share, read, and feel less alone. Stories, grouped by theme.",
+    "A quiet place for second patients to share, read, and feel less alone. Stories, grouped by theme.",
   applicationName: "Beside",
   manifest: "/manifest.json",
   appleWebApp: {
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf6ee",
+  themeColor: "#fdf3ee",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -50,7 +52,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${courier.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <Nav />

@@ -23,12 +23,15 @@ export default async function HomePage() {
   return (
     <div className="space-y-12">
       <section className="pt-6 pb-2 rise">
-        <p className="text-sm uppercase tracking-[0.18em] text-clay-deep mb-4">
-          beside
+        <p className="text-xs uppercase tracking-[0.18em] text-clay-deep mb-4">
+          beside · est. for the people loving someone through it
         </p>
-        <h1 className="font-display text-4xl sm:text-5xl text-ink leading-[1.05] tracking-tight">
-          For the people loving someone through it
-          <span className="text-clay">.</span>
+        <h1 className="font-display text-5xl sm:text-7xl font-light text-ink leading-[0.92] tracking-tight">
+          For the people
+          <br />
+          <span className="italic ml-6 sm:ml-10">loving someone</span>
+          <br />
+          through it<span className="text-clay">.</span>
         </h1>
         <p className="mt-5 text-lg text-ink-soft leading-relaxed max-w-prose">
           Beside is a quiet place for the family side of addiction, mental
